@@ -33,8 +33,21 @@ export class LoginComponent {
 
   public login() {
     if(this.loginForm.valid) {
-      this.loginService.login(this.loginForm.value as LoginRequest);
+      this.loginService.login(this.loginForm.value as LoginRequest).subscribe({
+        next: userData => {
+          console.log(userData);
+          
+        },
+        error: errorData => {
+
+        },
+        complete: () => {
+
+        }
+      });
+
       this.router.navigateByUrl('/dashboard');
+
       this.loginForm.reset();
     } else {
       this.loginForm.markAllAsTouched();
