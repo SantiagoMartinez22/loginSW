@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from '../../services/auth/login.service';
+import { LoginRequest } from '../../services/auth/loginRequest';
 
 @Component({
   selector: 'app-login',
@@ -11,13 +13,14 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   public loginForm: FormGroup = this.formBuilder.group({
-    email: ['alejo@gmail.com', [Validators.required, Validators.email]],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]]
   })
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private loginService: LoginService
   ) {}
 
   public get email() {
@@ -30,6 +33,7 @@ export class LoginComponent {
 
   public login() {
     if(this.loginForm.valid) {
+      this.loginService.login(this.loginForm.value as LoginRequest);
       this.router.navigateByUrl('/dashboard');
       this.loginForm.reset();
     } else {
