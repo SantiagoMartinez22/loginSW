@@ -40,6 +40,9 @@
                         @if (password.errors?.['required']) {
                         <small>Password is required.</small>
                         }
+                        @if (email.errors?.['minLength(6)']) {
+                        <small>Shorter password.</small>
+                        }
                     </div>
 
                 </div>
