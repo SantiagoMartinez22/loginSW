@@ -1,1 +1,7 @@
-<p>dashboard works!</p>
+@if (isLogin()) {
+<div>
+    <p>Nombre: {{ userData().name }}</p>
+    <p>Apellido: {{ userData().lastname }}</p>
+    <p>Email: {{ userData().email }}</p>
+</div>
+}
