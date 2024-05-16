@@ -1,28 +1,33 @@
-/* import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { LoginComponent } from './login.component';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { LoginComponent } from './login.component';
 import { LoginService } from '../../services/auth/login.service';
 
 describe('LoginComponent', () => {
-  let component: LoginComponent;
+  let loginComponent: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LoginComponent],
+      imports: [LoginComponent, HttpClientTestingModule],
       providers: [FormBuilder, Router, LoginService]
     })
     .compileComponents();
     
     fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
+    loginComponent = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create login component', () => {
-    expect(component).toBeTruthy();
+    expect(loginComponent).toBeTruthy();
+  });
+
+  it('should login', () => {
+    expect(loginComponent.login()).toBeUndefined();
   });
 });
- */
